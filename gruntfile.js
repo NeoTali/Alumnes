@@ -2,23 +2,45 @@ module.exports = function(grunt) {
     grunt.initConfig({
         jshint:{
             allFiles: ['*.js'],
-            options: { reporterOutput: "" }
-        } /*,
-        concat:{
-            dist: {
-                src: ['script1.js','script2.js','script3.js'],
-                dest: 'final.js'
+            ignores: ['gruntfile.js'],
+            options:{
+                reporterOutput: "",
+                ignores: ['gruntfile.js']
             }
         },
-        uglify:{
-            dist: {
-                src: ['final.js'],
-                dest: 'final.min.js'
+        copy:{
+            gen: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: './',
+                        src: ['*.js','*.css','*.html'],
+                        dest: '/Applications/MAMP/htdocs'
+                    }
+                ]
             }
-        } */
+        }
     });
+    
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    //grunt.loadNpmTasks('grunt-contrib-concat');
-    //grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.registerTask('default',['jshint']);
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    
+/*    watch: {
+        
+         scripts: {
+           files: ['*.js']
+           tasks: ['jshint','gen']
+           options: {
+             spawn: false
+           }
+         } //scripts
+         
+       } //watch*/
+       grunt.registerTask('default',['jshint','gen']);
+       grunt.registerTask('gen', function (target) {
+           grunt.task.run([
+               'copy:gen'
+           ]);
+       });
 };
