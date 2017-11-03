@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <meta charset="utf-8">
+        <title>Model en Scope</title>
+        <link rel="stylesheet" type="text/css" href="styles.css"></link>
+    </head>
+
+    <body ng-controller="AlumnesController">
+        <h1>Quadern Alumnes</h1>
+        <div class="wrapper">
+            <div class="contact-item" ng-repeat="alumne in alumnes | orderBy:'nom' track by $index">
+                <div class="nom"><button ng-click="mostraAlumne($index)">{{$index}} {{alumne.nom}} </button>- {{alumne.telf}}</div>
+                <span class="curs">{{alumne.curs}}</span>
+            </div>
+        </div>
+        <br/>
+        <center><button ng-click="MostraForm()" ng-hide="visibilitatForm">Afegir Contacte</button></center>
+        <div class="wrapper" ng-show="visibilitatForm">
+            <h2>Afegir un contacte</h2>
+            Nom: <input type="text" ng-model="nouAlumne.nom"/>
+            Telèfon: <input type="text" ng-model="nouAlumne.telf"/>
+            Curs: <input type="text" ng-model="nouAlumne.curs"/>
+            <button ng-click="Desar()">Desar</button>
+        </div>
+        <div ng-hide="mostraDetall">
+            <div class="wrapper" ng-controller="DetallController">
+                <h2>Detall del Contacte</h2>
+                <div class="contact-item">
+                    <div class="nom"> {{alm.nom}} - {{alm.telf}}</div>
+                    <span class="curs">{{alm.curs}}</span>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js" type="text/javascript"></script>
+        <script src="AlumnesController.js" type="text/javascript"></script>
+        <script src="DetallController.js" type="text/javascript"></script>
+        <script src="AlumnesFactory.js" type="text/javascript"></script>
+    </body>
+</html>
