@@ -2,7 +2,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         watch: {
             scripts: {
-                files: ['./*.js','./*.html','./*.css','./Controllers/*.js'],
+                files: ['*.js','*.html','*.css','Controllers/*.js','Curs/*.*'],
                 tasks: ['resta'],
                 options: {
                     spawn: false,
@@ -10,7 +10,7 @@ module.exports = function(grunt) {
             },
         },
         jshint:{
-            allFiles: ['./*.js','./Controllers/*.js'],
+            allFiles: ['./*.js','Controllers/*.js','Curs/*.js'],
             options:{
                 reporterOutput: "",
                 ignores: ['gruntfile.js','AlumnesController.js']
@@ -28,6 +28,12 @@ module.exports = function(grunt) {
                 src: ['./Controllers/*.js'],
                 dest: '/Applications/MAMP/htdocs/',
                 filter: 'isFile'
+            },
+            curs: {
+                expand: true,
+                src: ['./Curs/*.*'],
+                dest: '/Applications/MAMP/htdocs',
+                filter: 'isFile'
             }
         }
     });
@@ -40,5 +46,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.registerTask('default',['watch']);
-    grunt.registerTask('resta', ['jshint','copy:base','copy:ctrl']);
+    grunt.registerTask('resta', ['jshint','copy:base','copy:ctrl','copy:curs', 'watch']);
 };

@@ -27,6 +27,7 @@ app.controller('AlumnesController', function(AlumnesFactory){
 
     ctrl.mostraAlumne = function(index){
         AlumnesFactory.setIndex(index);
+        AlumnesFactory.getAlumne();
         ctrl.mostraDetall = !ctrl.mostraDetall;
     };
 
