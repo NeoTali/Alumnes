@@ -11,8 +11,12 @@ angular.module('GestAlumnes', [])
             getAlumnes: function(){
                 return alumnes;
             },
-            getAlumne: function(){
-                return alumnes[index];
+            getAlumne: function(nom){
+                for (var i=0;i<alumnes.length;i++) {
+                    if (alumnes[i].nom === nom) {
+                        return alumnes[i];
+                    }
+                }
             },    
             setAlumne: function(alumne){
                 alumnes.push(alumne);
