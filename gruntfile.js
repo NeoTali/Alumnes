@@ -31,7 +31,7 @@ module.exports = function(grunt) {
             },
             curs: {
                 expand: true,
-                src: ['./Curs/*.*'],
+                src: ['./html/*.*'],
                 dest: '/Applications/MAMP/htdocs',
                 filter: 'isFile'
             }

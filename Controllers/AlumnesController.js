@@ -1,34 +1,24 @@
+(function() {    
+    var app = angular.module('app');
 
-app.controller('AlumnesController', function(AlumnesFactory){
+    app.controller('AlumnesController', function(AlumnesFactory){
 
-    var ctrl = this;
-    ctrl.visibilitatForm=false;
-    ctrl.mostraDetall=false;
-    ctrl.alumnes = AlumnesFactory.getAlumnes();
-    ctrl.nouAlumne = {
-        nom: "",
-        telf: "",
-        curs: "",
-    };
+        var ctrl = this;
+        ctrl.alm = [];
+        ctrl.visibilitatForm=false;
+        ctrl.mostraDetall=false;
+        ctrl.alumnes = AlumnesFactory.getAlumnes();
 
-    ctrl.Desar = function(){
-        AlumnesFactory.setAlumne({nom:ctrl.nouAlumne.nom, telf:ctrl.nouAlumne.telf, curs:ctrl.nouAlumne.curs});
-        ctrl.netejaNouAlumne();
-        ctrl.MostraForm();
-    };
+        ctrl.MostraForm = function() {
+            ctrl.visibilitatForm = !ctrl.visibilitatForm;
+        };
+        ctrl.mostraAlumne = function(nom){
+            ctrl.alm = AlumnesFactory.getAlumne(nom);
+            ctrl.mostraDetall = true;
+        };
 
-    ctrl.MostraForm = function(){
-        ctrl.visibilitatForm = !vm.visibilitatForm;
-    };
-
-    ctrl.netejaNouAlumne = function(){
-        ctrl.nouAlumne.nom = ctrl.nouAlumne.telf = ctrl.nouAlumne.curs = "";
-    };
-
-    ctrl.mostraAlumne = function(index){
-        AlumnesFactory.setIndex(index);
-        AlumnesFactory.getAlumne();
-        ctrl.mostraDetall = !ctrl.mostraDetall;
-    };
-
-});
+        ctrl.amagaDetall = function(){
+            ctrl.mostraDetall = false;
+        };
+    });
+})();

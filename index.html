@@ -9,34 +9,22 @@
 
     <body ng-controller="AlumnesController as alum">
         <h1>Quadern Alumnes</h1>
-        <div class="wrapper">
-            <div class="contact-item" ng-repeat="alumne in alum.alumnes | orderBy:'nom' track by $index">
-                <div class="nom"><button ng-click="alum.mostraAlumne($index)">{{$index}} {{alumne.nom}} </button>- {{alumne.telf}}</div>
-                <span class="curs">{{alumne.curs}}</span>
-            </div>
-        </div>
+            <mostra-tots-alumnes></mostra-tots-alumnes>
         <br/>
-        <center><button ng-click="MostraForm()" ng-hide="alum.visibilitatForm">Afegir Contacte</button></center>
+        <center>
+            <buto-afegir-alumne></buto-afegir-alumne>
+        </center>
         <div class="wrapper" ng-show="alum.visibilitatForm">
-            <h2>Afegir un contacte</h2>
-            Nom: <input type="text" ng-model="nouAlumne.nom"/>
-            Telèfon: <input type="text" ng-model="nouAlumne.telf"/>
-            Curs: <input type="text" ng-model="nouAlumne.curs"/>
-            <button ng-click="Desar()">Desar</button>
+            <form-afegir-alumne></form-afegir-alumne>
         </div>
         <div ng-show="alum.mostraDetall">
-            <div class="wrapper" ng-controller="DetallController as dc">
-                <h2>Detall del Contacte</h2>
-                <div class="contact-item">
-                    <div class="nom"> {{dc.alm.nom}} - {{dc.alm.telf}}</div>
-                    <span class="curs">{{dc.alm.curs}}</span>
-                </div>
+            <div class="wrapper">
+                <mostra-detall-alumne></mostra-detall-alumne>
             </div>
         </div> -->
 
         
-<!--        <script src="DetallController.js" type="text/javascript"></script> 
-         -->
+<!--        <script src="DetallController.js" type="text/javascript"></script>        -->
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.1/angular.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="app.js"></script>
