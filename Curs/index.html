@@ -2,95 +2,28 @@
 <html ng-app="gemStore">
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.1/angular.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="app.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
-  <body class="list-group" ng-controller="StoreController as store">
+
+  <body ng-controller="StoreController as store">
+    <!--  Store Header  -->
     <header>
       <h1 class="text-center">Flatlander Crafted Gems</h1>
       <h2 class="text-center">– an Angular store –</h2>
     </header>
-    <div class="list-group-item" ng-repeat="product in store.products">
-      <h3>
-        {{product.name}}
-        <em class="pull-right">{{product.price | currency}}</em>
-      </h3>
-      <!-- <section ng-show="product.images.length">
-        <img ng-src="{{product.images[0]}}" />
-        <ul class="list-inline thumbs">
-          <li class="thumbnail" ng-repeat="image in product.images">
-            <img ng-src="{{image}}" />
-          </li>
-        </ul>
-      </section> -->
 
-      <section class="tab" ng-controller="TabController as tab">
-        <ul class="nav nav-pills">
-          <li ng-class="{active:tab.isSet(1)}">
-            <a href ng-click= "tab.setTab(1)">Description</a></li>
-          <li ng-class="{active:tab.isSet(2)}">
-            <a href ng-click= "tab.setTab(2)">Specs</a></li>
-          <li ng-class="{active:tab.isSet(3)}">
-            <a href ng-click= "tab.setTab(3)">Reviews</a></li>
-        </ul>
-        <div ng-show="tab.isSet(1)">
-          <h4>Description</h4>
-          <blockquote>{{product.description}}</blockquote>
-        </div>
-        <div ng-show="tab.isSet(2)">
-          <h4>Specs</h4>
-          <blockquote>Shine: {{product.shine}}</blockquote>
-        </div>
-        <div ng-show="tab.isSet(3)">
-          <h4>Reviews</h4>
-          <blockquote></blockquote>
-        </div>
-      </section>
+    <!--  Products Container  -->
+    <div class="list-group">
+      <!--  Product Container  -->
+      <div class="list-group-item" ng-repeat="product in store.products">
+        <product-title></product-title>
+        <!-- Product Tabs  -->
+        <product-panels></product-panels>
+      </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.1/angular.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="products.js"></script>
+    
   </body>
 </html>
-
-
-<!-- <!DOCTYPE html>
-<html ng-app="store">
-    <head>
-        <meta charset="utf-8">
-        <title>Model en Scope</title>
-    </head>
-    <body ng-controller="storeController as store">
-        <div ng-repeat="product in store.products">
-            <h1>Nom del producte: {{product.nom}}</h1>
-            <h2>Preu del producte: {{product.preu}}€</h2>
-            <p> Descripció del producte: {{product.descripcio}}</p>
-            <button ng-show="product.esPotComprar">Afegir al cistell</button>
-            <section ng-controller="panelController as panel">
-                <ul class="nav nav-pills">
-                    <li ng-class="{ active:panel.isSelected(1)}">
-                        <a href ng-click="panel.selectedTab(1)">Descripció</a>
-                    </li>
-                    <li ng-class="{ active:panel.isSelected(2) }">
-                        <a href ng-click="panel.selectedTab(2)">Especificacions</a>
-                    </li>
-                    <li ng-class="{ active:panel.isSelected(3)}">
-                        <a href ng-click="panel.selectedTab(3)">Comentaris</a>
-                    </li>
-                </ul>
-                <div class="panel" ng-show="panel.isSelected(1)">
-                    <h4>Descripció</h4>
-                    <p>{{product.descipcio}}</p>
-                </div>
-                <div class="panel" ng-show="panel.isSelected(2)">
-                    <h4>Especificacions</h4>
-                    <blockquote>Encara cap...</blockquote>
-                </div>
-                <div class="panel" ng-show="panel.isSelected(3)">
-                    <h4>Comentaris</h4>
-                    <blockquote>Encara cap...</blockquote>
-                </div>
-            </section>
-        </div>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.1/angular.min.js" type="text/javascript"></script>
-        <script src="app.js" type="text/javascript"></script>
-    </body>
-</html> -->
